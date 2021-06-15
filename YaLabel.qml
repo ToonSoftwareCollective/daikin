@@ -20,6 +20,17 @@ added
         Reason :
             To give each button a configurable border
             ( defaults: 1 and "black" )
+            
+    bool hoveringEnabled
+        Reason :
+            hovering on Toon 1 leaves button hovered after touching and setting selected false.
+            now when you use 'hoveringEnabled : isNxt' hovering will only work on Toon 2
+            I use this in toonSmallHeating, daikin and other apps
+            
+    int buttonBorderRadius
+        Reason :
+            make it configurable so you can make nice rounded corners
+            
 removed
     fixed margins from anchors in buttonRect
         Reason : lef, right, top and bottom were fixed 5, now variable
@@ -47,10 +58,13 @@ Item {
 
     property bool selected              : false
     property bool pixelsizeoverride     : false
-    property int pixelsizeoverridesize  : 20
+    property int pixelsizeoverridesize  : isNxt ? 20 : 16
+    property bool hoveringEnabled       : true
 
     property string buttonBorderColor   : "black"
     property int buttonBorderWidth      : 1
+    
+    property int buttonBorderRadius : 5
 
     signal clicked()
 
@@ -69,7 +83,7 @@ Item {
             fill: parent
         }
         color: buttonActiveColor
-        radius: 5
+        radius: buttonBorderRadius
 
         Text {
             id: labelTitle
@@ -129,7 +143,7 @@ Item {
     MouseArea {
         id              : buttonArea
         anchors.fill    : parent
-        hoverEnabled    : true
+        hoverEnabled    : hoveringEnabled
         onClicked       : doClick()
         cursorShape     : Qt.PointingHandCursor
     }

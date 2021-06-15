@@ -376,6 +376,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : ( (app.mode == "0") || (app.mode == "1") || (app.mode == "7") ) ? true : false
         textColor : "black"
@@ -397,6 +398,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : (app.mode == "3") ? true : false
         textColor : "black"
@@ -418,6 +420,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : (app.mode == "4")  ? true : false
         textColor : "black"
@@ -439,6 +442,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : (app.mode == "6") ? true : false
         textColor : "black"
@@ -460,6 +464,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : (app.mode == "2") ? true : false
         textColor : "black"
@@ -483,6 +488,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : ( app.f_rate == "A") ? true : false
         textColor : "black"
@@ -505,6 +511,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : ( app.f_rate == "B") ? true : false
         textColor : "black"
@@ -527,6 +534,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : ( app.f_rate == "3") ? true : false
         textColor : "black"
@@ -550,6 +558,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : ( app.f_rate == "4") ? true : false
         textColor : "black"
@@ -572,6 +581,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : ( app.f_rate == "5") ? true : false
         textColor : "black"
@@ -594,6 +604,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : ( app.f_rate == "6") ? true : false
         textColor : "black"
@@ -616,6 +627,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : ( app.f_rate == "7") ? true : false
         textColor : "black"
@@ -640,6 +652,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : ( app.f_dir == "0") ? true : false
         textColor : "black"
@@ -661,6 +674,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : ( app.f_dir == "1") ? true : false
         textColor : "black"
@@ -683,6 +697,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : ( app.f_dir == "2") ? true : false
         textColor : "black"
@@ -705,6 +720,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : ( app.f_dir == "3") ? true : false
         textColor : "black"
@@ -728,6 +744,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : ( ad == "0") ? true : false
         textColor : "black"
@@ -749,6 +766,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : ( ad == "1") ? true : false
         textColor : "black"
@@ -770,6 +788,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : ( ad == "2") ? true : false
         textColor : "black"
@@ -791,6 +810,7 @@ Screen {
         buttonActiveColor: activeColor
         buttonHoverColor: hoverColor
         buttonSelectedColor : selectedColor
+        hoveringEnabled : false
         enabled : true
         selected : ( ad == "3") ? true : false
         textColor : "black"
