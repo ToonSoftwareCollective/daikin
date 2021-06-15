@@ -1,0 +1,16 @@
+6.2.1
+- Textual changes and solved highlight issue on some buttons on Toon 1 
+6.2.0
+- Usage button on Control Screen to show new screen Energy Usage and from Usage to new Graphs screen
+6.1.1
+- Control Screen : replace 'Monitor All' by 'Exit' in case of 1 airco ( Thanks Arie )
+- Control Screen : temperature limits for each mode; a background image per airco
+- Settings Screen: input validation; all buttons same type
+- Enhanced Daikin communication; suspend communication after 10 consecutive errors and retry after 10 minutes
+- Earlier error reset by simply selecting airco on the Control Screen
+6.1.0
+- More standard color scheme; simplified Daikin communication; run Timers only when tile / screen is visible
+6.0.1
+- Expanded from 1 to 4 airco's; removed tray icon
+6.0.0
+- First public release
