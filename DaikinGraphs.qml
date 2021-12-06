@@ -253,8 +253,10 @@ Screen {
         selected : false
         textColor : "black"
         anchors {
-            bottom:        (daikinIndex == 0 ) ? parent.top      : parent.bottom
-            bottomMargin : (daikinIndex == 0 ) ? 4 * fieldheight : fieldheight
+//            bottom:        (daikinIndex == 0 ) ? parent.top      : parent.bottom
+            bottom         : parent.bottom
+//            bottomMargin : (daikinIndex == 0 ) ? 4 * fieldheight : fieldheight
+            bottomMargin : fieldheight
             horizontalCenter : monthbarGraphHeat.horizontalCenter
         }
         onClicked: {
@@ -264,6 +266,7 @@ Screen {
                 updateGraphs()
             }
         }
+        visible: (daikinIndex > 0 )
     }
 
     YaLabel {
@@ -278,8 +281,10 @@ Screen {
         selected : false
         textColor : "black"
         anchors {
-            bottom:        (daikinIndex == app.daikinCount - 1 ) ? parent.top      : parent.bottom
-            bottomMargin : (daikinIndex == app.daikinCount - 1 ) ? 4 * fieldheight : fieldheight
+//            bottom:        (daikinIndex == app.daikinCount - 1 ) ? parent.top      : parent.bottom
+            bottom         : parent.bottom
+//            bottomMargin : (daikinIndex == app.daikinCount - 1 ) ? 4 * fieldheight : fieldheight
+            bottomMargin : fieldheight
             horizontalCenter : monthbarGraphTotal.horizontalCenter
         }
         onClicked: {
@@ -289,6 +294,7 @@ Screen {
                 updateGraphs()
              }            
         }
+        visible : (daikinIndex < app.daikinCount - 1 )
     }
 // --------------------------------------------------- bottom line
 

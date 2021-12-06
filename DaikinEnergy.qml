@@ -2,18 +2,14 @@ import QtQuick 2.1
 import qb.components 1.0
 import BasicUIControls 1.0
 
-// http://192.168.2.123/aircon/get_year_power_ex
-// http://192.168.2.123/aircon/get_week_power_ex
 
 Screen {
     id: root
     screenTitle: qsTr("Energy usage in kWh last 12 months")
 
 // I used a rectangles to get everything lined out and 'removed' them afterwards by setting the hight to 0
-//    property int rectangleHeight : 440
     property int rectangleHeight : 0
 
-//    property int rectangleWidth : isNxt ? 170 : 136
     property int rectangleWidth : isNxt ? 160 : 128
 
     property int fieldheight : isNxt ? 30 : 24
@@ -30,7 +26,7 @@ Screen {
 
     property int daikinIndex
     
-// On startup create Save button and put values in form
+// On startup create Exit button and put values in form
 
     onShown: {
         addCustomTopRightButton("Exit");
@@ -145,18 +141,243 @@ Screen {
 
 // --------------------------------------------------- Rectangles
 
+// --------------------------------------------------- rectangle0
+
     Rectangle {
         id: rectangle0
         width: rectangleWidth
         height: rectangleHeight
         color: "lightgrey"
         anchors {
-//            left : (app.daikinCount > 2 ) ? parent.left : (app.daikinCount == 2 ) ? rectangleWidth : rectangleWidth * 3
             left : parent.left
             leftMargin : rectangle0LeftMargin
             top: parent.top
         }
+
+        YaLabel {
+            id: daikinM1
+            buttonText:  "Januari"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : ( currentMonth == 1 )
+            textColor : "black"
+            anchors {
+                top: rectangle0.top
+                topMargin : fieldheight
+                horizontalCenter: rectangle0.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikinM2
+            buttonText:  "Februari"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : ( currentMonth == 2 )
+            textColor : "black"
+            anchors {
+                top: daikinM1.bottom
+                horizontalCenter: rectangle0.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikinM3
+            buttonText:  "March"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : ( currentMonth == 3 )
+            textColor : "black"
+            anchors {
+                top: daikinM2.bottom
+                horizontalCenter: rectangle0.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikinM4
+            buttonText:  "April"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : ( currentMonth == 4 )
+            textColor : "black"
+            anchors {
+                top: daikinM3.bottom
+                horizontalCenter: rectangle0.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikinM5
+            buttonText:  "May"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : ( currentMonth == 5 )
+            textColor : "black"
+            anchors {
+                top: daikinM4.bottom
+                horizontalCenter: rectangle0.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikinM6
+            buttonText:  "June"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : ( currentMonth == 6 )
+            textColor : "black"
+            anchors {
+                top: daikinM5.bottom
+                horizontalCenter: rectangle0.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikinM7
+            buttonText:  "July"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : ( currentMonth == 7 )
+            textColor : "black"
+            anchors {
+                top: daikinM6.bottom
+                horizontalCenter: rectangle0.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikinM8
+            buttonText:  "August"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : ( currentMonth == 8 )
+            textColor : "black"
+            anchors {
+                top: daikinM7.bottom
+                horizontalCenter: rectangle0.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikinM9
+            buttonText:  "September"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : ( currentMonth == 9 )
+            textColor : "black"
+            anchors {
+                top: daikinM8.bottom
+                horizontalCenter: rectangle0.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikinM10
+            buttonText:  "October"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : ( currentMonth == 10 )
+            textColor : "black"
+            anchors {
+                top: daikinM9.bottom
+                horizontalCenter: rectangle0.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikinM11
+            buttonText:  "November"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : ( currentMonth == 11 )
+            textColor : "black"
+            anchors {
+                top: daikinM10.bottom
+                horizontalCenter: rectangle0.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikinM12
+            buttonText:  "December"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : ( currentMonth == 12 )
+            textColor : "black"
+            anchors {
+                top: daikinM11.bottom
+                horizontalCenter: rectangle0.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikinM13
+            buttonText:  "Totals"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikinM12.bottom
+                horizontalCenter: rectangle0.horizontalCenter
+            }
+        }
     }
+
+// --------------------------------------------------- rectangle1
 
     Rectangle {
         id: rectangle1
@@ -167,7 +388,270 @@ Screen {
             left : rectangle0.right
             top: parent.top
         }
+
+        YaLabel {
+            id: daikinName1
+            buttonText:  ""
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: rectangle1.top
+                horizontalCenter: rectangle1.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin1M0
+            buttonText:  "M0"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikinName1.bottom
+                horizontalCenter: rectangle1.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin1M1
+            buttonText:  "M1"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin1M0.bottom
+                horizontalCenter: rectangle1.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin1M2
+            buttonText:  "M2"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin1M1.bottom 
+                horizontalCenter: rectangle1.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin1M3
+            buttonText:  "M3"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin1M2.bottom 
+                horizontalCenter: rectangle1.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin1M4
+            buttonText:  "M4"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin1M3.bottom 
+                horizontalCenter: rectangle1.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin1M5
+            buttonText:  "M5"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin1M4.bottom 
+                horizontalCenter: rectangle1.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin1M6
+            buttonText:  "M6"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin1M5.bottom 
+                horizontalCenter: rectangle1.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin1M7
+            buttonText:  "M7"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin1M6.bottom 
+                horizontalCenter: rectangle1.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin1M8
+            buttonText:  "M8"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin1M7.bottom 
+                horizontalCenter: rectangle1.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin1M9
+            buttonText:  "M9"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin1M8.bottom 
+                horizontalCenter: rectangle1.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin1M10
+            buttonText:  "M10"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin1M9.bottom 
+                horizontalCenter: rectangle1.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin1M11
+            buttonText:  "M11"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin1M10.bottom 
+                horizontalCenter: rectangle1.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin1M12
+            buttonText:  "M12"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin1M11.bottom 
+                horizontalCenter: rectangle1.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikinGraphs1
+            buttonText:  "Graphs"
+            height: fieldheight
+            width: fieldwidth / 2
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin1M12.bottom
+                topMargin : fieldheight
+                horizontalCenter: rectangle1.horizontalCenter
+            }
+            onClicked: {
+                daikinIndex = 0
+                stage.openFullscreen(app.daikinGraphsUrl);
+            }
+        }
+        
     }
+
+// --------------------------------------------------- rectangle2
 
     Rectangle {
         id: rectangle2
@@ -178,7 +662,272 @@ Screen {
             left : rectangle1.right
             top: parent.top
         }
+
+        visible : (app.daikinCount > 1 )
+
+        YaLabel {
+            id: daikinName2
+            buttonText:  ""
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: rectangle2.top
+                horizontalCenter: rectangle2.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin2M0
+            buttonText:  "M0"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikinName2.bottom
+                horizontalCenter: rectangle2.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin2M1
+            buttonText:  "M1"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin2M0.bottom
+                horizontalCenter: rectangle2.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin2M2
+            buttonText:  "M2"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin2M1.bottom 
+                horizontalCenter: rectangle2.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin2M3
+            buttonText:  "M3"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin2M2.bottom 
+                horizontalCenter: rectangle2.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin2M4
+            buttonText:  "M4"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin2M3.bottom 
+                horizontalCenter: rectangle2.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin2M5
+            buttonText:  "M5"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin2M4.bottom 
+                horizontalCenter: rectangle2.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin2M6
+            buttonText:  "M6"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin2M5.bottom 
+                horizontalCenter: rectangle2.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin2M7
+            buttonText:  "M7"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin2M6.bottom 
+                horizontalCenter: rectangle2.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin2M8
+            buttonText:  "M8"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin2M7.bottom 
+                horizontalCenter: rectangle2.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin2M9
+            buttonText:  "M9"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin2M8.bottom 
+                horizontalCenter: rectangle2.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin2M10
+            buttonText:  "M10"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin2M9.bottom 
+                horizontalCenter: rectangle2.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin2M11
+            buttonText:  "M11"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin2M10.bottom 
+                horizontalCenter: rectangle2.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin2M12
+            buttonText:  "M12"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin2M11.bottom 
+                horizontalCenter: rectangle2.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikinGraphs2
+            buttonText:  "Graphs"
+            height: fieldheight
+            width: fieldwidth / 2
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin2M12.bottom
+                topMargin : fieldheight
+                horizontalCenter: rectangle2.horizontalCenter
+            }
+            onClicked: {
+                daikinIndex = 1
+                stage.openFullscreen(app.daikinGraphsUrl);
+            }
+        }
+
     }
+
+// --------------------------------------------------- rectangle3
 
     Rectangle {
         id: rectangle3
@@ -189,7 +938,272 @@ Screen {
             left : rectangle2.right
             top: parent.top
         }
+
+        visible : (app.daikinCount > 2 )
+
+        YaLabel {
+            id: daikinName3
+            buttonText:  ""
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: rectangle3.top
+                horizontalCenter: rectangle3.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin3M0
+            buttonText:  "M0"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikinName3.bottom
+                horizontalCenter: rectangle3.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin3M1
+            buttonText:  "M1"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin3M0.bottom
+                horizontalCenter: rectangle3.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin3M2
+            buttonText:  "M2"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin3M1.bottom 
+                horizontalCenter: rectangle3.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin3M3
+            buttonText:  "M3"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin3M2.bottom 
+                horizontalCenter: rectangle3.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin3M4
+            buttonText:  "M4"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin3M3.bottom 
+                horizontalCenter: rectangle3.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin3M5
+            buttonText:  "M5"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin3M4.bottom 
+                horizontalCenter: rectangle3.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin3M6
+            buttonText:  "M6"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin3M5.bottom 
+                horizontalCenter: rectangle3.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin3M7
+            buttonText:  "M7"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin3M6.bottom 
+                horizontalCenter: rectangle3.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin3M8
+            buttonText:  "M8"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin3M7.bottom 
+                horizontalCenter: rectangle3.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin3M9
+            buttonText:  "M9"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin3M8.bottom 
+                horizontalCenter: rectangle3.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin3M10
+            buttonText:  "M10"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin3M9.bottom 
+                horizontalCenter: rectangle3.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin3M11
+            buttonText:  "M11"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin3M10.bottom 
+                horizontalCenter: rectangle3.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin3M12
+            buttonText:  "M12"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin3M11.bottom 
+                horizontalCenter: rectangle3.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikinGraphs3
+            buttonText:  "Graphs"
+            height: fieldheight
+            width: fieldwidth / 2
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin3M12.bottom
+                topMargin : fieldheight
+                horizontalCenter: rectangle3.horizontalCenter
+            }
+            onClicked: {
+                daikinIndex = 2
+                stage.openFullscreen(app.daikinGraphsUrl);
+            }
+        }
+
     }
+
+// --------------------------------------------------- rectangle4
 
     Rectangle {
         id: rectangle4
@@ -200,7 +1214,272 @@ Screen {
             left : rectangle3.right
             top: parent.top
         }
+
+        visible : (app.daikinCount > 3 )
+
+        YaLabel {
+            id: daikinName4
+            buttonText:  ""
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: rectangle4.top
+                horizontalCenter: rectangle4.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin4M0
+            buttonText:  "M0"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikinName4.bottom
+                horizontalCenter: rectangle4.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin4M1
+            buttonText:  "M1"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin4M0.bottom
+                horizontalCenter: rectangle4.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin4M2
+            buttonText:  "M2"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin4M1.bottom 
+                horizontalCenter: rectangle4.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin4M3
+            buttonText:  "M3"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin4M2.bottom 
+                horizontalCenter: rectangle4.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin4M4
+            buttonText:  "M4"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin4M3.bottom 
+                horizontalCenter: rectangle4.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin4M5
+            buttonText:  "M5"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin4M4.bottom 
+                horizontalCenter: rectangle4.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin4M6
+            buttonText:  "M6"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin4M5.bottom 
+                horizontalCenter: rectangle4.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin4M7
+            buttonText:  "M7"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin4M6.bottom 
+                horizontalCenter: rectangle4.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin4M8
+            buttonText:  "M8"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin4M7.bottom 
+                horizontalCenter: rectangle4.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin4M9
+            buttonText:  "M9"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin4M8.bottom 
+                horizontalCenter: rectangle4.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin4M10
+            buttonText:  "M10"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin4M9.bottom 
+                horizontalCenter: rectangle4.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin4M11
+            buttonText:  "M11"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin4M10.bottom 
+                horizontalCenter: rectangle4.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin4M12
+            buttonText:  "M12"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin4M11.bottom 
+                horizontalCenter: rectangle4.horizontalCenter
+            }
+        }
+        
+        YaLabel {
+            id: daikinGraphs4
+            buttonText:  "Graphs"
+            height: fieldheight
+            width: fieldwidth / 2
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin4M12.bottom
+                topMargin : fieldheight
+                horizontalCenter: rectangle4.horizontalCenter
+            }
+            onClicked: {
+                daikinIndex = 3
+                stage.openFullscreen(app.daikinGraphsUrl);
+            }
+        }
+
     }
+
+// --------------------------------------------------- rectangle5 Totals
 
     Rectangle {
         id: rectangle5
@@ -208,1555 +1487,250 @@ Screen {
         height: rectangleHeight
         color: "white"
         anchors {
-            left : rectangle4.right
+            left : (app.daikinCount == 2 ) ? rectangle2.right : (app.daikinCount == 3 ) ? rectangle3.right : rectangle4.right
             top: parent.top
         }
-    }
-
-// --------------------------------------------------- rectangle0
-
-    YaLabel {
-        id: daikinM1
-        buttonText:  "Januari"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : ( currentMonth == 1 )
-        textColor : "black"
-        anchors {
-            top: daikinName1.bottom
-            horizontalCenter: rectangle0.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikinM2
-        buttonText:  "Februari"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : ( currentMonth == 2 )
-        textColor : "black"
-        anchors {
-            top: daikinM1.bottom
-            horizontalCenter: rectangle0.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikinM3
-        buttonText:  "March"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : ( currentMonth == 3 )
-        textColor : "black"
-        anchors {
-            top: daikinM2.bottom
-            horizontalCenter: rectangle0.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikinM4
-        buttonText:  "April"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : ( currentMonth == 4 )
-        textColor : "black"
-        anchors {
-            top: daikinM3.bottom
-            horizontalCenter: rectangle0.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikinM5
-        buttonText:  "May"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : ( currentMonth == 5 )
-        textColor : "black"
-        anchors {
-            top: daikinM4.bottom
-            horizontalCenter: rectangle0.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikinM6
-        buttonText:  "June"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : ( currentMonth == 6 )
-        textColor : "black"
-        anchors {
-            top: daikinM5.bottom
-            horizontalCenter: rectangle0.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikinM7
-        buttonText:  "July"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : ( currentMonth == 7 )
-        textColor : "black"
-        anchors {
-            top: daikinM6.bottom
-            horizontalCenter: rectangle0.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikinM8
-        buttonText:  "August"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : ( currentMonth == 8 )
-        textColor : "black"
-        anchors {
-            top: daikinM7.bottom
-            horizontalCenter: rectangle0.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikinM9
-        buttonText:  "September"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : ( currentMonth == 9 )
-        textColor : "black"
-        anchors {
-            top: daikinM8.bottom
-            horizontalCenter: rectangle0.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikinM10
-        buttonText:  "October"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : ( currentMonth == 10 )
-        textColor : "black"
-        anchors {
-            top: daikinM9.bottom
-            horizontalCenter: rectangle0.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikinM11
-        buttonText:  "November"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : ( currentMonth == 11 )
-        textColor : "black"
-        anchors {
-            top: daikinM10.bottom
-            horizontalCenter: rectangle0.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikinM12
-        buttonText:  "December"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : ( currentMonth == 12 )
-        textColor : "black"
-        anchors {
-            top: daikinM11.bottom
-            horizontalCenter: rectangle0.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikinM13
-        buttonText:  "Totals"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikinM12.bottom
-            horizontalCenter: rectangle0.horizontalCenter
-        }
-    }
-
-
-// --------------------------------------------------- rectangle1
-
-    YaLabel {
-        id: daikinName1
-        buttonText:  ""
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: rectangle1.top
-            horizontalCenter: rectangle1.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin1M0
-        buttonText:  "M0"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikinName1.bottom
-            horizontalCenter: rectangle1.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin1M1
-        buttonText:  "M1"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin1M0.bottom
-            horizontalCenter: rectangle1.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin1M2
-        buttonText:  "M2"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin1M1.bottom 
-            horizontalCenter: rectangle1.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin1M3
-        buttonText:  "M3"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin1M2.bottom 
-            horizontalCenter: rectangle1.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin1M4
-        buttonText:  "M4"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin1M3.bottom 
-            horizontalCenter: rectangle1.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin1M5
-        buttonText:  "M5"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin1M4.bottom 
-            horizontalCenter: rectangle1.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin1M6
-        buttonText:  "M6"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin1M5.bottom 
-            horizontalCenter: rectangle1.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin1M7
-        buttonText:  "M7"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin1M6.bottom 
-            horizontalCenter: rectangle1.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin1M8
-        buttonText:  "M8"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin1M7.bottom 
-            horizontalCenter: rectangle1.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin1M9
-        buttonText:  "M9"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin1M8.bottom 
-            horizontalCenter: rectangle1.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin1M10
-        buttonText:  "M10"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin1M9.bottom 
-            horizontalCenter: rectangle1.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin1M11
-        buttonText:  "M11"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin1M10.bottom 
-            horizontalCenter: rectangle1.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin1M12
-        buttonText:  "M12"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin1M11.bottom 
-            horizontalCenter: rectangle1.horizontalCenter
-        }
-    }
-
-// --------------------------------------------------- rectangle2
-
-    YaLabel {
-        id: daikinName2
-        buttonText:  ""
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: (app.daikinCount > 1 ) ? rectangle2.top : offscreenAnchor.bottom
-            horizontalCenter: rectangle2.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin2M0
-        buttonText:  "M0"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikinName2.bottom
-            horizontalCenter: rectangle2.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin2M1
-        buttonText:  "M1"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin2M0.bottom
-            horizontalCenter: rectangle2.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin2M2
-        buttonText:  "M2"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin2M1.bottom 
-            horizontalCenter: rectangle2.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin2M3
-        buttonText:  "M3"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin2M2.bottom 
-            horizontalCenter: rectangle2.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin2M4
-        buttonText:  "M4"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin2M3.bottom 
-            horizontalCenter: rectangle2.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin2M5
-        buttonText:  "M5"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin2M4.bottom 
-            horizontalCenter: rectangle2.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin2M6
-        buttonText:  "M6"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin2M5.bottom 
-            horizontalCenter: rectangle2.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin2M7
-        buttonText:  "M7"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin2M6.bottom 
-            horizontalCenter: rectangle2.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin2M8
-        buttonText:  "M8"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin2M7.bottom 
-            horizontalCenter: rectangle2.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin2M9
-        buttonText:  "M9"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin2M8.bottom 
-            horizontalCenter: rectangle2.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin2M10
-        buttonText:  "M10"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin2M9.bottom 
-            horizontalCenter: rectangle2.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin2M11
-        buttonText:  "M11"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin2M10.bottom 
-            horizontalCenter: rectangle2.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin2M12
-        buttonText:  "M12"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin2M11.bottom 
-            horizontalCenter: rectangle2.horizontalCenter
-        }
-    }
-
-// --------------------------------------------------- rectangle3
-
-    YaLabel {
-        id: daikinName3
-        buttonText:  ""
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: (app.daikinCount > 2 ) ? rectangle3.top : offscreenAnchor.bottom
-            horizontalCenter: rectangle3.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin3M0
-        buttonText:  "M0"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikinName3.bottom
-            horizontalCenter: rectangle3.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin3M1
-        buttonText:  "M1"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin3M0.bottom
-            horizontalCenter: rectangle3.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin3M2
-        buttonText:  "M2"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin3M1.bottom 
-            horizontalCenter: rectangle3.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin3M3
-        buttonText:  "M3"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin3M2.bottom 
-            horizontalCenter: rectangle3.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin3M4
-        buttonText:  "M4"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin3M3.bottom 
-            horizontalCenter: rectangle3.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin3M5
-        buttonText:  "M5"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin3M4.bottom 
-            horizontalCenter: rectangle3.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin3M6
-        buttonText:  "M6"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin3M5.bottom 
-            horizontalCenter: rectangle3.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin3M7
-        buttonText:  "M7"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin3M6.bottom 
-            horizontalCenter: rectangle3.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin3M8
-        buttonText:  "M8"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin3M7.bottom 
-            horizontalCenter: rectangle3.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin3M9
-        buttonText:  "M9"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin3M8.bottom 
-            horizontalCenter: rectangle3.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin3M10
-        buttonText:  "M10"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin3M9.bottom 
-            horizontalCenter: rectangle3.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin3M11
-        buttonText:  "M11"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin3M10.bottom 
-            horizontalCenter: rectangle3.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin3M12
-        buttonText:  "M12"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin3M11.bottom 
-            horizontalCenter: rectangle3.horizontalCenter
-        }
-    }
-
-// --------------------------------------------------- rectangle4
-
-    YaLabel {
-        id: daikinName4
-        buttonText:  ""
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: (app.daikinCount > 3 ) ? rectangle4.top : offscreenAnchor.bottom
-            horizontalCenter: rectangle4.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin4M0
-        buttonText:  "M0"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikinName4.bottom
-            horizontalCenter: rectangle4.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin4M1
-        buttonText:  "M1"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin4M0.bottom
-            horizontalCenter: rectangle4.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin4M2
-        buttonText:  "M2"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin4M1.bottom 
-            horizontalCenter: rectangle4.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin4M3
-        buttonText:  "M3"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin4M2.bottom 
-            horizontalCenter: rectangle4.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin4M4
-        buttonText:  "M4"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin4M3.bottom 
-            horizontalCenter: rectangle4.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin4M5
-        buttonText:  "M5"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin4M4.bottom 
-            horizontalCenter: rectangle4.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin4M6
-        buttonText:  "M6"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin4M5.bottom 
-            horizontalCenter: rectangle4.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin4M7
-        buttonText:  "M7"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin4M6.bottom 
-            horizontalCenter: rectangle4.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin4M8
-        buttonText:  "M8"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin4M7.bottom 
-            horizontalCenter: rectangle4.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin4M9
-        buttonText:  "M9"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin4M8.bottom 
-            horizontalCenter: rectangle4.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin4M10
-        buttonText:  "M10"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin4M9.bottom 
-            horizontalCenter: rectangle4.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin4M11
-        buttonText:  "M11"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin4M10.bottom 
-            horizontalCenter: rectangle4.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin4M12
-        buttonText:  "M12"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin4M11.bottom 
-            horizontalCenter: rectangle4.horizontalCenter
-        }
-    }
-
-// --------------------------------------------------- rectangle5 Totals
-
-    YaLabel {
-        id: daikinName5
-        buttonText:  "Totals"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: (app.daikinCount > 1 ) ? rectangle0.top : offscreenAnchor.bottom
-            horizontalCenter: (app.daikinCount == 2 ) ? rectangle3.horizontalCenter : (app.daikinCount == 3 ) ? rectangle4.horizontalCenter : rectangle5.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin5M0
-        buttonText:  "M0"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikinName5.bottom
-            horizontalCenter: daikinName5.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin5M1
-        buttonText:  "M1"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin5M0.bottom
-            horizontalCenter: daikinName5.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin5M2
-        buttonText:  "M2"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin5M1.bottom 
-            horizontalCenter: daikinName5.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin5M3
-        buttonText:  "M3"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin5M2.bottom 
-            horizontalCenter: daikinName5.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin5M4
-        buttonText:  "M4"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin5M3.bottom 
-            horizontalCenter: daikinName5.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin5M5
-        buttonText:  "M5"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin5M4.bottom 
-            horizontalCenter: daikinName5.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin5M6
-        buttonText:  "M6"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin5M5.bottom 
-            horizontalCenter: daikinName5.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin5M7
-        buttonText:  "M7"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin5M6.bottom 
-            horizontalCenter: daikinName5.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin5M8
-        buttonText:  "M8"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin5M7.bottom 
-            horizontalCenter: daikinName5.horizontalCenter
-        }
-    }
 
-    YaLabel {
-        id: daikin5M9
-        buttonText:  "M9"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin5M8.bottom 
-            horizontalCenter: daikinName5.horizontalCenter
+        visible : (app.daikinCount > 1 )
+
+        YaLabel {
+            id: daikinName5
+            buttonText:  "Totals"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: activeColor
+            buttonHoverColor: hoverColor
+            buttonSelectedColor : selectedColor
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: rectangle5.top
+                horizontalCenter: rectangle5.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin5M0
+            buttonText:  "M0"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikinName5.bottom
+                horizontalCenter: daikinName5.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin5M1
+            buttonText:  "M1"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin5M0.bottom
+                horizontalCenter: daikinName5.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin5M2
+            buttonText:  "M2"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin5M1.bottom 
+                horizontalCenter: daikinName5.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin5M3
+            buttonText:  "M3"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin5M2.bottom 
+                horizontalCenter: daikinName5.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin5M4
+            buttonText:  "M4"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin5M3.bottom 
+                horizontalCenter: daikinName5.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin5M5
+            buttonText:  "M5"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin5M4.bottom 
+                horizontalCenter: daikinName5.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin5M6
+            buttonText:  "M6"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin5M5.bottom 
+                horizontalCenter: daikinName5.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin5M7
+            buttonText:  "M7"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin5M6.bottom 
+                horizontalCenter: daikinName5.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin5M8
+            buttonText:  "M8"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin5M7.bottom 
+                horizontalCenter: daikinName5.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin5M9
+            buttonText:  "M9"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin5M8.bottom 
+                horizontalCenter: daikinName5.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin5M10
+            buttonText:  "M10"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin5M9.bottom 
+                horizontalCenter: daikinName5.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin5M11
+            buttonText:  "M11"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "lightgrey"
+            buttonHoverColor: "lightgrey"
+            buttonSelectedColor : "lightgrey"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin5M10.bottom 
+                horizontalCenter: daikinName5.horizontalCenter
+            }
+        }
+
+        YaLabel {
+            id: daikin5M12
+            buttonText:  "M12"
+            height: fieldheight
+            width: fieldwidth
+            buttonActiveColor: "white"
+            buttonHoverColor: "white"
+            buttonSelectedColor : "white"
+            enabled : true
+            selected : false
+            textColor : "black"
+            anchors {
+                top: daikin5M11.bottom 
+                horizontalCenter: daikinName5.horizontalCenter
+            }
         }
-    }
-
-    YaLabel {
-        id: daikin5M10
-        buttonText:  "M10"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin5M9.bottom 
-            horizontalCenter: daikinName5.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin5M11
-        buttonText:  "M11"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "lightgrey"
-        buttonHoverColor: "lightgrey"
-        buttonSelectedColor : "lightgrey"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin5M10.bottom 
-            horizontalCenter: daikinName5.horizontalCenter
-        }
-    }
-
-    YaLabel {
-        id: daikin5M12
-        buttonText:  "M12"
-        height: fieldheight
-        width: fieldwidth
-        buttonActiveColor: "white"
-        buttonHoverColor: "white"
-        buttonSelectedColor : "white"
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin5M11.bottom 
-            horizontalCenter: daikinName5.horizontalCenter
-        }
-    }
-
-// --------------------------------------------------- bottom row with graphs buttons
-
-    YaLabel {
-        id: daikinGraphs1
-        buttonText:  "Graphs"
-        height: fieldheight
-        width: fieldwidth / 2
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin1M12.bottom
-            topMargin : fieldheight
-            horizontalCenter: rectangle1.horizontalCenter
-        }
-        onClicked: {
-            daikinIndex = 0
-            stage.openFullscreen(app.daikinGraphsUrl);
-        }
-    }
-
-    YaLabel {
-        id: daikinGraphs2
-        buttonText:  "Graphs"
-        height: fieldheight
-        width: fieldwidth / 2
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin2M12.bottom
-            topMargin : fieldheight
-            horizontalCenter: rectangle2.horizontalCenter
-        }
-        onClicked: {
-            daikinIndex = 1
-            stage.openFullscreen(app.daikinGraphsUrl);
-        }
-    }
-
-    YaLabel {
-        id: daikinGraphs3
-        buttonText:  "Graphs"
-        height: fieldheight
-        width: fieldwidth / 2
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin3M12.bottom
-            topMargin : fieldheight
-            horizontalCenter: rectangle3.horizontalCenter
-        }
-        onClicked: {
-            daikinIndex = 2
-            stage.openFullscreen(app.daikinGraphsUrl);
-        }
-    }
-
-    YaLabel {
-        id: daikinGraphs4
-        buttonText:  "Graphs"
-        height: fieldheight
-        width: fieldwidth / 2
-        buttonActiveColor: activeColor
-        buttonHoverColor: hoverColor
-        buttonSelectedColor : selectedColor
-        enabled : true
-        selected : false
-        textColor : "black"
-        anchors {
-            top: daikin4M12.bottom
-            topMargin : fieldheight
-            horizontalCenter: rectangle4.horizontalCenter
-        }
-        onClicked: {
-            daikinIndex = 3
-            stage.openFullscreen(app.daikinGraphsUrl);
-        }
-    }
 
-// --------------------------------------------------- bottom line
-
-// Message about totals
-
-    Text {
-        id: totalsMessage
-//        text: (app.daikinCount > 1 ) ? "Totals are only correct when IP addresses differ." : ""
-        text: (app.daikinCount > 1 ) ? "" : ""
-        anchors {
-            bottom: parent.bottom
-            bottomMargin: isNxt ? 20 : 16
-            horizontalCenter: parent.horizontalCenter
-        }
-        font {
-            pixelSize: isNxt ? 15 : 12
-            family: qfont.bold.name
-        }
-        color: "#ff00f4"
     }
-
-// --------------------------------------------------- offscreenAnchor
-
-    Text {
-        id: offscreenAnchor
-        text: "offscreenAnchor"
-        anchors {
-            top: parent.bottom
-            topMargin: isNxt ? 20 : 16
-        }
-    }
-
 }
 

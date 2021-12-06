@@ -5,12 +5,6 @@ import FileIO 1.0
 
 App {
 
-// testReports true generates test values for report and graphs.
-
-    property bool testReports : false
-    
-    property bool activeMe : false
-
     property url menuScreenUrl : "DaikinSettings.qml"
     property DaikinSettings daikinSettings
 
@@ -26,14 +20,11 @@ App {
     property url tileUrl : "DaikinTile.qml"
     property DaikinTile daikinTile
 
-    property string daikinTileColor : "#ffffff"
-    property string daikinTileTextColor : "#ffffff"
 
-// data saved in user settings file
+// tile update variables
 
-    property string interval
+    property string update_interval
     property bool showCountDown;
-//    property string daikinName
 
 // data on max 4 daikins
 
@@ -42,48 +33,14 @@ App {
     property variant daikinIPs : []
     property variant daikinPorts : []
 
-// error count mechanism max 8 errors, retry after 600 seconds
+// communication status
 
-    property variant daikinComErrors : []
-    property int maxErrors : 10
-    property int resetErrorsTime : 600
-    property int daikinErrorsTile : 0
-
-// The next is in the config already but not in use
-// The idea is to use a configurable background picture for each airco
-
-    property variant daikinPictures : []
-
-    property variant curr_year_heat : []
-    property variant prev_year_heat : []
-    property variant curr_year_cool : []
-    property variant prev_year_cool : []
-
-    property variant last_year_heat : []
-    property variant last_year_cool : []
-    property variant last_year_energy : []
-    
-// update counter
-
-    property int counter
-
-// ....Tile variables
-
-    property bool powTile
-    property string daikinNameTile
-    property string homeTempTile
-    property string roofTempTile
-    property string targetTempTile
-    property string directionTempTile
-    property string modeTile
-
-    property bool monitorLocked : false
-
-// active daikin
-
-    property int     ad
+    property variant asynchronous_com : [ ]
 
 // variable to receive data from Daikin
+
+    property variant xmlhttpSensor
+    property variant xmlhttpControl
 
     property string daikinSensorData
     property string daikinControlData
@@ -100,19 +57,19 @@ App {
 
 // actual sensor and control
 
-    property string homeTemp
-    property string roofTemp
-    property string targetTemp
-    property string directionTemp
+    property string homeTemp        : "-"
+    property string directionTemp   : "-"
+    property string targetTemp      : "-"
+    property string roofTemp        : "-"
 
 // control set variables received
 
-    property bool pow
-    property string mode
-    property string stemp
-    property string shum
-    property string f_rate
-    property string f_dir
+    property bool pow               : false
+    property string mode            : "-"
+    property string stemp           : "-"
+    property string shum            : "-"
+    property string f_rate          : "-"
+    property string f_dir           : "-"
 
 // control set variable values to send back (from received reference data per mode)
 
@@ -122,18 +79,35 @@ App {
     property string f_ratevalue
     property string f_dirvalue
 
-// ---------- Location of user settings file
+// Energy usage variables
+
+// these contain 12 months each and are used to calculate....
+    property variant curr_year_heat : []
+    property variant prev_year_heat : []
+    property variant curr_year_cool : []
+    property variant prev_year_cool : []
+// these .... only the last 12 months are shown in the graphs
+    property variant last_year_heat : []
+    property variant last_year_cool : []
+    property variant last_year_energy : []
+
+// The next is in the config already but not in use
+// The idea is to use a configurable background picture for each airco
+
+    property variant daikinPictures : []
+
+// -------------------------------------- Location of user settings file
 
     FileIO {
         id: userSettingsFile
         source: "file:///mnt/data/tsc/daikin.userSettings.json"
      }
 
-// ---------- Structure user settings from settings file
+// -------------------------- Structure user settings from settings file
 
     property variant userSettingsJSON : {}
 
-// ---------- Load APP requirements
+// ----------------------------------------------- Load APP requirements
 
     function init() {
 
@@ -156,7 +130,7 @@ App {
         registry.registerWidget("screen", daikinGraphsUrl, this, "daikinGraphs");
     }
 
-// ---------- Actions right after APP startup
+// ------------------------------------- Actions right after APP startup
 
     Component.onCompleted: {
 
@@ -165,7 +139,7 @@ App {
         try {
             userSettingsJSON = JSON.parse(userSettingsFile.read());
 
-            interval        = userSettingsJSON['interval'];
+            update_interval = userSettingsJSON['interval'];
             showCountDown   = (userSettingsJSON['ShowCountDown'] == "yes") ? true : false
             daikinCount     = userSettingsJSON['daikinCount'];
             daikinNames     = userSettingsJSON['daikinNames'].slice()
@@ -173,41 +147,28 @@ App {
             daikinPorts     = userSettingsJSON['daikinPorts'].slice()
             daikinPictures  = userSettingsJSON['daikinPictures'].slice()
 
+            asynchronous_com = [ false, false, false, false ]
+
         } catch(e) {
 
-            interval        = "5"
+            update_interval = "10"
             showCountDown   = false
             daikinCount     = 4
-            daikinNames     = ["click me and........","click......................","settings...............","to configure........"]
+            daikinNames     = ["Daikin 1","Daikin 2","Daikin 3","Daikin 4"]
             daikinIPs       = ["","","",""]
             daikinPorts     = ["80","80","80","80"]
             daikinPictures  = ["daikin1.png","daikin2.png","daikin3.png","daikin4.png"]
 
+            asynchronous_com = [ true, true, true, true ]
         }
-
-// prepare for running
-
-        daikinComErrors = [0,0,0,0]
-        
-        for ( var i = 0 ; i < 4 ; i++) {
-            curr_year_heat[i] = [0,0,0,0,0,0,0,0,0,0,0,0,0]
-            prev_year_heat[i] = [0,0,0,0,0,0,0,0,0,0,0,0,0]
-            curr_year_cool[i] = [0,0,0,0,0,0,0,0,0,0,0,0,0]
-            prev_year_cool[i] = [0,0,0,0,0,0,0,0,0,0,0,0,0]
-        }
-
-        counter = 0
-        ad = -1
-        readDaikinData(ad)
-
     }
 
-// ---------- Save user settings
+// ---------------------------------------------------------------------
 
     function saveSettings(){
 
          var tmpUserSettingsJSON = {
-            "interval":         interval,
+            "interval":         update_interval,
             "daikinCount":      daikinCount,
             "daikinNames":      daikinNames,
             "daikinIPs":        daikinIPs,
@@ -215,14 +176,34 @@ App {
             "daikinPictures":   daikinPictures,
             "ShowCountDown":    (showCountDown) ? "yes" : "no"
         }
-        var doc3 = new XMLHttpRequest();
-        doc3.open("PUT", "file:///mnt/data/tsc/daikin.userSettings.json");
-        doc3.send(JSON.stringify(tmpUserSettingsJSON));
+        var daikinSettingsFile = new XMLHttpRequest();
+        daikinSettingsFile.open("PUT", "file:///mnt/data/tsc/daikin.userSettings.json");
+        daikinSettingsFile.send(JSON.stringify(tmpUserSettingsJSON));
     }
 
-// ---------- Get Daikin data
+// ---------------------------------------------------------------------
+
+    function log(tolog) {
+
+        var now      = new Date();
+        var dateTime = now.getFullYear() + '-' +
+                ('00'+(now.getMonth() + 1)   ).slice(-2) + '-' +
+                ('00'+ now.getDate()         ).slice(-2) + ' ' +
+                ('00'+ now.getHours()        ).slice(-2) + ":" +
+                ('00'+ now.getMinutes()      ).slice(-2) + ":" +
+                ('00'+ now.getSeconds()      ).slice(-2) + "." +
+                ('000'+now.getMilliseconds() ).slice(-3);
+        console.log(dateTime+' daikin : ' + tolog.toString())
+
+    }
+
+// ---------------------------------------------------------------------
 
     function readDaikinData(di)  {
+
+// When in error state we communicate in async mode and may need to kill previous async retry.
+
+        if (typeof xmlhttpSensor != "undefined") { xmlhttpSensor.abort() }
 
 // di :: daikin index 0..4
 
@@ -235,15 +216,17 @@ App {
 
 // get sensor info
 
-            var xmlhttpSensor = new XMLHttpRequest();
+            xmlhttpSensor = new XMLHttpRequest();
 
-            xmlhttpSensor.open("GET", "http://"+connectionPath+"/aircon/get_sensor_info", false);
+            xmlhttpSensor.open("GET", "http://"+connectionPath+"/aircon/get_sensor_info", asynchronous_com[di]);
 
             xmlhttpSensor.onreadystatechange = function() {
 
                 if (xmlhttpSensor.readyState == XMLHttpRequest.DONE) {
 
                     if (xmlhttpSensor.status === 200) {
+
+                        asynchronous_com[di] = false
 
                         daikinSensorData = '{"' + xmlhttpSensor.response.split('=').join('":"').split(',').join('","') + '"}';
 
@@ -253,41 +236,35 @@ App {
 
                         var newroofTemp = dataSensorJSON['otemp'].slice(0, -2)
 
-// Variables for Tile have Tile in them -> possibility to act different on Tile
-
-                        homeTempTile = newhomeTemp
-
                         if ( newroofTemp.length > 0 ) {
-                            roofTempTile = newroofTemp
+                            roofTemp = newroofTemp
                         }
 
                         homeTemp = newhomeTemp
 
-                        daikinComErrors[di] = 0
                     } else {
-                        daikinComErrors[di] = daikinComErrors[di] + 1
-                        if ( daikinComErrors[di] >= maxErrors ) { daikinComErrors[di] = resetErrorsTime }
-                        saveJSON("http://"+connectionPath+"/aircon/get_sensor_info Return status: " + xmlhttpSensor.status,"xmlhttpSensorerrorRead")
-                        homeTempTile =  "check";
-                        directionTempTile = ""
-                        targetTempTile =  "cfg";
-                        roofTempTile =  "";
+
+                        asynchronous_com[di] = true
+                        log("http://"+connectionPath+"/aircon/get_sensor_info Return status: " + xmlhttpSensor.status)
                     }
                 }
             }
+
             xmlhttpSensor.send();
 
 // get control info
 
-            var xmlhttpControl = new XMLHttpRequest();
+            xmlhttpControl = new XMLHttpRequest();
 
-            xmlhttpControl.open("GET", "http://"+connectionPath+"/aircon/get_control_info", false);
+            xmlhttpControl.open("GET", "http://"+connectionPath+"/aircon/get_control_info", asynchronous_com[di]);
 
             xmlhttpControl.onreadystatechange = function() {
 
                 if (xmlhttpControl.readyState == XMLHttpRequest.DONE) {
 
                     if (xmlhttpControl.status === 200) {
+
+                        asynchronous_com[di] = false
 
                         daikinControlData = '{"' + xmlhttpControl.response.split('=').join('":"').split(',').join('","') + '"}';
 
@@ -299,43 +276,30 @@ App {
                         case "0":
                         case "1":
                         case "7":
-                            directionTempTile = ">"
-                            targetTempTile = dataControlJSON['stemp'].slice(0, -2);
                             directionTemp = ">"
                             targetTemp = dataControlJSON['stemp'].slice(0, -2);
                             break;
                         case "2":
-                            directionTempTile = "="
-                            targetTempTile = "nvt";
-                            targetTempTile = homeTempTile;
                             directionTemp = "="
-                            targetTemp = "nvt";
+// a target temperature is 'not applicable' but for the layout on the tile I think it is better to show something
+//                            targetTemp = "na";
                             targetTemp = homeTemp;
                             break;
                         case "3":
-                            directionTempTile = "v"
-                            targetTempTile = dataControlJSON['stemp'].slice(0, -2);
                             directionTemp = "v"
                             targetTemp = dataControlJSON['stemp'].slice(0, -2);
                             break;
                         case "4":
-                            directionTempTile = "^"
-                            targetTempTile = dataControlJSON['stemp'].slice(0, -2);
                             directionTemp = "^"
                             targetTemp = dataControlJSON['stemp'].slice(0, -2);
                             break;
                         case "6":
-                            directionTempTile = "="
-                            targetTempTile = "nvt";
-                            targetTempTile = homeTempTile;
                             directionTemp = "="
-                            targetTemp = "nvt";
+// a target temperature is 'not applicable' but for the layout on the tile I think it is better to show something
+//                            targetTemp = "na";
                             targetTemp = homeTemp;
                             break;
                         }
-
-                        powTile = (dataControlJSON['pow'] == "1") ? true : false
-                        modeTile = dataControlJSON['mode']
 
                         pow = (dataControlJSON['pow'] == "1") ? true : false
                         mode = dataControlJSON['mode']
@@ -344,35 +308,34 @@ App {
                         stemp = dataControlJSON['stemp']
                         shum = dataControlJSON['shum']
 
-                        daikinComErrors[di] = 0
                     } else {
-                        daikinComErrors[di] = daikinComErrors[di] + 1
-                        if ( daikinComErrors[di] >= maxErrors ) { daikinComErrors[di] = resetErrorsTime }
-                        saveJSON("http://"+connectionPath+"/aircon/get_control_info Return status: " + xmlhttpControl.status,"xmlhttpGETControlerrorRead")
-                        homeTempTile =  "check";
-                        directionTempTile = ""
-                        targetTempTile =  "cfg";
-                        roofTempTile =  "";
+                        asynchronous_com[di] = true
+                        log("http://"+connectionPath+"/aircon/get_control_info Return status: " + xmlhttpControl.status)
                     }
                 }
             }
 
             xmlhttpControl.send();
 
-            xmlhttpSensor = null
-            xmlhttpControl = null
-
         } else {
-            daikinComErrors[di] = 0
-            homeTempTile =  "check";
-            directionTempTile = ""
-            targetTempTile =  "cfg";
-            roofTempTile =  "";
+            asynchronous_com[di] = true
+        }
+
+        if (asynchronous_com[di]) {
+            homeTemp = "-"
+            directionTemp = "-"
+            targetTemp = "-"
+            roofTemp =  "-"
+            pow = false
+            mode = "-"
+            f_rate = "-"
+            f_dir = "-"
+            stemp = "-"
+            shum = "-"
         }
     }
 
-
-// ---------- Set Daikin Control
+// ---------------------------------------------------------------------
 
     function setDaikinControl(di, which, value)  {
 
@@ -385,13 +348,13 @@ App {
 
         var connectionPath = ipAddress + ":" + httpPort;
 
-        if ( connectionPath.length > 4 ) {
+        if ( ( connectionPath.length > 4 ) && ( ! asynchronous_com[di] ) ) {
 
 // get control info
 
             var xmlhttpSetControlGet = new XMLHttpRequest();
 
-            xmlhttpSetControlGet.open("GET", "http://"+connectionPath+"/aircon/get_control_info", false);
+            xmlhttpSetControlGet.open("GET", "http://"+connectionPath+"/aircon/get_control_info", asynchronous_com[di]);
 
             xmlhttpSetControlGet.onreadystatechange = function() {
 
@@ -399,24 +362,22 @@ App {
 
                     if (xmlhttpSetControlGet.status === 200) {
 
+                        asynchronous_com[di] = false
+
                         daikinSetControlData = xmlhttpSetControlGet.response;
 
                         dataSetControlJSON = JSON.parse('{"' + xmlhttpSetControlGet.response.split('=').join('":"').split(',').join('","') + '"}');
 
-                        daikinComErrors[di] = 0
                     } else {
-                        daikinComErrors[di] = daikinComErrors[di] + 1
-                        if ( daikinComErrors[di] >= maxErrors ) { daikinComErrors[di] = resetErrorsTime }
-                        saveJSON("http://"+connectionPath+"/aircon/get_control_info Return status: " + xmlhttpSetControlGet.status,"xmlhttpGETControlerrorSet")
-                        homeTempTile =  "check";
-                        directionTempTile = ""
-                        targetTempTile =  "cfg";
-                        roofTempTile =  "";
+                        asynchronous_com[di] = true
+                        log("http://"+connectionPath+"/aircon/get_control_info Return status: " + xmlhttpSetControlGet.status)
                     }
                 }
             }
 
             xmlhttpSetControlGet.send();
+
+// ------ build newControls
 
             var newControls = {}
 
@@ -426,8 +387,6 @@ App {
             newControls['stemp'] = dataSetControlJSON['stemp']
             newControls['shum'] = dataSetControlJSON['shum']
             newControls['mode'] = dataSetControlJSON['mode']
-
-// ------ simplified
 
             newControls[which] = value
 
@@ -473,7 +432,7 @@ App {
 
             var xmlhttpSetControlSet = new XMLHttpRequest();
 
-            xmlhttpSetControlSet.open("GET", "http://"+connectionPath+"/aircon/set_control_info?" + daikinSetControlData , false);
+            xmlhttpSetControlSet.open("GET", "http://"+connectionPath+"/aircon/set_control_info?" + daikinSetControlData , asynchronous_com[di]);
 
               xmlhttpSetControlSet.onreadystatechange = function() {
 
@@ -481,17 +440,13 @@ App {
 
                       if (xmlhttpSetControlSet.status === 200) {
 
+                        asynchronous_com[di] = false
+
                         daikinSetControlData = xmlhttpSetControlSet.response;
 
-                        daikinComErrors[di] = 0
                       } else {
-                        daikinComErrors[di] = daikinComErrors[di] + 1
-                        if ( daikinComErrors[di] >= maxErrors ) { daikinComErrors[di] = resetErrorsTime }
-                        saveJSON("http://"+connectionPath+"/aircon/set_control_info?" + daikinSetControlData + " Return status: " + xmlhttpSetControlSet.status,"xmlhttpControlerrorSet")
-                        homeTempTile =  "check";
-                        directionTempTile = ""
-                        targetTempTile =  "cfg";
-                        roofTempTile =  "";
+                        asynchronous_com[di] = true
+                        log("http://"+connectionPath+"/aircon/set_control_info?" + daikinSetControlData + " Return status: " + xmlhttpSetControlSet.status)
                       }
                   }
               }
@@ -501,17 +456,11 @@ App {
             xmlhttpSetControlGet = null
             xmlhttpSetControlSet = null
 
-        } else {
-            daikinComErrors[di] = 0
-            homeTempTile =  "check";
-            directionTempTile = ""
-            targetTempTile =  "cfg";
-            roofTempTile =  "";
         }
     }
 
-// ---------- Get Daikin Energy
-    
+// ---------------------------------------------------------------------
+
     function readDaikinEnergy(di)  {
 
         curr_year_heat[di] = [0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -526,28 +475,21 @@ App {
 
         var connectionPath = ipAddress + ":" + httpPort;
 
-        if ( testReports ) {
+        if ( ( connectionPath.length > 4 ) && ( ! asynchronous_com[di] ) )  {
 
-            for ( var i = 0 ; i < 13 ; i++ ) {
-                curr_year_heat[di][i] = Math.round((di + 1) * (i + 1) * Math.random())
-                prev_year_heat[di][i] = Math.round((di + 1) * (i + 1) * Math.random())
-                curr_year_cool[di][i] = Math.round((di + 1) * (i + 1) * Math.random())
-                prev_year_cool[di][i] = Math.round((di + 1) * (i + 1) * Math.random())
-            }
-            
-        } else if ( ( connectionPath.length > 4 ) && ( daikinComErrors[ad] < maxErrors) ) {
-
-// get sensor info
+// get usage info
 
             var xmlhttpEnergy = new XMLHttpRequest();
 
-            xmlhttpEnergy.open("GET", "http://"+connectionPath+"/aircon/get_year_power_ex", false);
+            xmlhttpEnergy.open("GET", "http://"+connectionPath+"/aircon/get_year_power_ex", asynchronous_com[di]);
 
             xmlhttpEnergy.onreadystatechange = function() {
 
                 if (xmlhttpEnergy.readyState == XMLHttpRequest.DONE) {
 
                     if (xmlhttpEnergy.status === 200) {
+
+                        asynchronous_com[di] = false
 
                         daikinEnergyData = '{"' + xmlhttpEnergy.response.split('=').join('":"').split(',').join('","') + '"}';
 
@@ -576,42 +518,37 @@ App {
                         for ( i = 0 ; i < 12 ; i++ ) {
                             prev_year_cool[di][i] = parseFloat(stringArray[i]) / 10
                         }
-                        daikinComErrors[di] = 0
                     } else {
-                        daikinComErrors[di] = daikinComErrors[di] + 1
-                        if ( daikinComErrors[di] >= maxErrors ) { daikinComErrors[di] = resetErrorsTime }
-                        saveJSON("http://"+connectionPath+"/aircon/get_year_power_ex Return status: " + xmlhttpEnergy.status,"xmlhttpEnergyerror")
+                        asynchronous_com[di] = true
+                        log("http://"+connectionPath+"/aircon/get_year_power_ex Return status: " + xmlhttpEnergy.status)
                     }
                 }
             }
-
             xmlhttpEnergy.send();
 
             xmlhttpEnergy = null
-
         }
-        
     }
 
-// ---------- calculateEnergy 
+// ---------------------------------------------------------------------
 
     function calculateEnergy()  {
-    
+
         var d = new Date();
         var n = d.getMonth();
 
 // Fill 5 arrays with 0's and only calculate totals for actual number of airco's
 
         last_year_energy[4] = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    
+
         for ( var i = 0 ; i < 4 ; i ++) {
 
             last_year_heat[i] = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             last_year_cool[i] = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
             last_year_energy[i] = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-            
+
             if ( i < daikinCount ) {
-            
+
                 for ( var ma = 0 ; ma <= n ; ma++ ) {
                     last_year_heat[i][ma] = last_year_heat[i][ma] + curr_year_heat[i][ma]
                     last_year_cool[i][ma] = last_year_cool[i][ma] + curr_year_cool[i][ma]
@@ -623,7 +560,7 @@ App {
                     last_year_cool[i][ma] = Math.round(last_year_cool[i][ma] * 10) / 10
                     last_year_energy[i][ma] = Math.round(last_year_energy[i][ma] * 10) / 10
                 }
-            
+
                 for ( var mb = n + 1 ; mb < 12 ; mb++ ) {
                     last_year_heat[i][mb] = last_year_heat[i][mb] + prev_year_heat[i][mb]
                     last_year_cool[i][mb] = last_year_cool[i][mb] + prev_year_cool[i][mb]
@@ -647,9 +584,8 @@ App {
 
             }
 
-
 // add all in last array i when i + 1  == daikinCount which means we have them all
-            
+
             if ( i + 1 == daikinCount ) {
                 for ( var mt = 0 ; mt < 13 ; mt++ ) {
                     for ( var ii = 0 ; ii < daikinCount ; ii++ ) {
@@ -660,107 +596,6 @@ App {
                     }
                 }
             }
-
-        }
-        
-    }
-
-// ---------- save json data in json file. Used for debugging.
-
-    function saveJSON(text,id) {
-
-          var doc3 = new XMLHttpRequest();
-           doc3.open("PUT", "file:///var/volatile/tmp/daikin_retrieved_data_"+id+".json");
-           doc3.send(text);
-    }
-
-// ---------- Timer and timer action
-
-// Timer in ms
-
-    Timer {
-        id: appTimer
-        interval: 1000;
-        running: activeMe
-        repeat: true
-        onTriggered: refreshScreen()
-    }
-
-// color codes below from https://www.color-hex.com/
-
-    function refreshScreen() {
-
-        if ( counter >  0 ) {
-            counter = counter - 1
-        } else {
-            counter = interval - 1
-
-            if ( ! monitorLocked ) {
-                ad = ( ad + 1 ) % daikinCount
-            }
-        }
-
-        if ( daikinComErrors[ad] > maxErrors ) {
-
-// substract 1 for for every second passed and take number of daikins into account
-
-            if ( counter == interval - 1 ) { daikinComErrors[ad] = daikinComErrors[ad] - ( daikinCount - 1 ) * interval }
-
-            daikinComErrors[ad] = daikinComErrors[ad] - 1
-
-// in case of a long interval this value may become < 0
-
-            if (daikinComErrors[ad] < 0) { daikinComErrors[ad] = 0}
-
-            homeTempTile =  "wait";
-            directionTempTile = ""
-            targetTempTile =  "......";
-            roofTempTile =  "";
-
-            daikinNameTile = daikinNames[ad]
-
-        } else {
-
-            daikinNameTile = daikinNames[ad]
-
-            if ( counter == interval - 1 ) {readDaikinData(ad) }
-
-        }
-
-        daikinErrorsTile = daikinComErrors[ad]
-        if (daikinComErrors[ad] > 0) { powTile = false }
-
-        if (powTile) {
-            switch (modeTile) {
-                case "0":
-                case "1":
-                case "7":
-// mode auto purple
-                    daikinTileColor = "#ff00f4"
-                    daikinTileTextColor = "#000000"
-                    break;
-                case "2":
-// mode dry green
-                    daikinTileColor = "#00ff40"
-                    daikinTileTextColor = "#000000"
-                    break;
-                case "3":
-// mode cool blue ok
-                    daikinTileColor = "#00f4ff"
-                    daikinTileTextColor = "#000000"
-                    break;
-                case "4":
-// mode heat red
-                    daikinTileColor = "#ff0000"
-                    daikinTileTextColor = "#ffffff"
-                    break;
-                case "6":
-// mode ventilate yellow ok
-                    daikinTileColor = "#fff400"
-                    daikinTileTextColor = "#000000"
-                    break;
-            }
         }
     }
-
 }
