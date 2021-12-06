@@ -1,3 +1,6 @@
+6.2.2
+- Much faster communication recovery in case of issues
+- Replaced superscripted little o's by degree symbols
 6.2.1
 - Textual changes and solved highlight issue on some buttons on Toon 1 
 6.2.0
